@@ -1,5 +1,7 @@
 import React from 'react';
 import ImageItem from './ImageItem';
+import FirstImage from './FirstImage';
+
 
 function ImageList() {
   const images = [
@@ -49,8 +51,9 @@ function ImageList() {
 
   return (
     <div style={styles.imageList as React.CSSProperties}>
-      {images.map((image) => (
-        <ImageItem
+      {images.map((image) => image.id === 1?(
+        <div style={styles.firstimage }>
+          <FirstImage
           key={image.id}
           titre={image.titre}
           lien={image.lien}
@@ -58,6 +61,18 @@ function ImageList() {
           description={image.description}
           link={image.link}
         />
+        </div>) : (
+        <div style={styles.imageitem }>
+          <ImageItem
+          key={image.id}
+          titre={image.titre}
+          lien={image.lien}
+          url={image.url}
+          description={image.description}
+          link={image.link}
+        />
+        </div>
+
       ))}
     </div>
   );
@@ -67,8 +82,13 @@ const styles = {
   imageList: {
     display: 'flex',
     flexWrap: 'wrap',
-    gap: '20px',
+    gap: '30px',
+  
   },
+
+  firstimage:{},
+
+  imageitem:{},
 };
 
 export default ImageList;
